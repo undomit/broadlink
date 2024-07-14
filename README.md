@@ -13,7 +13,7 @@ Long press again until blue LED is blinking slowly.
 
 Manually connect to the WiFi SSID named BroadlinkProv.
 
-Provide your ssid and network password in the lanConfig.json file.
+Provide your ssid and network password for a 2.4 GHz network in the lanConfig.json file.
 
 Run setup()
 
@@ -21,6 +21,6 @@ Reset device and connect to the local network
 
 Run npm start
 
-Access the web interface in http://localhost:3000
+Access the web interface on http://localhost:3000
 
 Enter learning mode will configure the device to learn IR commands. Once it has received Ir data, you can store it in a command and send that command later on from the Web Interface
