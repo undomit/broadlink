@@ -2,6 +2,7 @@ export const getLearn = async (req, res) => {
     console.log('Learning mode...');
     
     const device = req.device;
+    console.log(device);
     await device.enterLearning();
     
     const intervalId = setInterval(async () => {

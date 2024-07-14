@@ -16,8 +16,11 @@
     "broadlinkjs-sm": "^0.1.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "node-broadlink": "^2.4.0",
     "nodemon": "^3.1.4",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "react": "^18.3.1"
   }
 }

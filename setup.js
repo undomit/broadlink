@@ -16,7 +16,8 @@ const setup = async () => {
     const {ssid, password} = await getConfigInfo();
     
     //Security mode options are (0 = none, 1 = WEP, 2 = WPA1, 3 = WPA2, 4 = WPA1/2)
-    broadlink.setup(ssid, password, 3);
+    console.log(ssid, password)
+    await broadlink.setup(ssid, password, 3);
 }
 
-setup().then(() => console.log('Setup succesfull!')).catch((err) => console.log('Setup error:', err))
+setup();

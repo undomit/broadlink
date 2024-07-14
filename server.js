@@ -12,10 +12,12 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.set('view engine', 'ejs');
 app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+
 app.use(cacheDiscoverDataMiddleware);
+
 app.use(broadlinkRoutes);
 
 app.get('/', (req, res) => {

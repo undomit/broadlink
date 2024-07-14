@@ -30,6 +30,7 @@ export const cacheDiscoverDataMiddleware = async (req, res, next) => {
     }
   }
 
+  console.log(cachedDiscoverData);
   req.device = cachedDiscoverData;
   next();
 };

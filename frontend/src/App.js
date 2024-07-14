@@ -65,15 +65,21 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="column">
-          {!device && <button onClick={handleDiscover}>Discover Device</button>}
-          {device && <p>{device.model}</p>}
-          {loading && (
-            <div>
-              <p>Learning...</p>
-              <button onClick={handleCancelDiscover}>Cancel</button>
-            </div>
-          )}
-          <button onClick={handleLearn}>Enter Learning Mode</button>
+          {device ?
+            <p>Device found: {device.model}</p>
+            :
+            <button onClick={handleDiscover}>Discover Device</button>
+          }
+          {loading ? 
+            (
+              <div>
+                <p>Learning...</p>
+                <button onClick={handleCancelDiscover}>Cancel</button>
+              </div>
+            )
+            :
+            <button disabled={!device} onClick={handleLearn}>Enter Learning Mode</button>
+          }
         </div>
         <div class="vertical-rule"></div>
         <div className="column">
