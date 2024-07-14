@@ -4,6 +4,57 @@
   min-height: 100vh;
 }
 
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+dialog {
+  position: absolute;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 10px 3fr;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid white;
+}
+
+button {
+  width: fit-content;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.cmdContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.commandBtn {
+  background-color: #61dafb;
+}
+
+.vertical-rule {
+  width: 1px;
+  height: 100vh;
+  background-color: white;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 p {
   color: white;
   margin: 0;

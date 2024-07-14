@@ -10,10 +10,10 @@ function App() {
   const [commands, setCommands] = useState([]);
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const inputRef = useRef();
+  const buttonRef = useRef();
   const abortControllerRef = useRef();
 
   const handleSave = (name, data) => {
-    console.log({name, data});
     setCommands([...commands, {name, data}]);
     setDialogIsOpen(false);
     inputRef.current.value = '';
@@ -23,6 +23,7 @@ function App() {
     try {
       const response = await fetch('http://localhost:3000/discover');
       const json = await response.json();
+
       setDevice(json.data);
     } catch (err) {
       setError('Something went wrong')
@@ -38,6 +39,7 @@ function App() {
     try {
       const response = await fetch('http://localhost:3000/learn', {signal});
       const json = await response.json();
+
       setIrData(json.data);
       setDialogIsOpen(true);
     } catch (err) {
@@ -47,6 +49,14 @@ function App() {
     }
   }
 
+  const handleInputChange = () => {
+    if (!inputRef.current?.value) {
+      buttonRef.current.disabled = true;
+    } else {
+      buttonRef.current.disabled = false;
+    }
+  };
+
   useEffect(() => {
     handleDiscover();
   }, []);
@@ -54,26 +64,33 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        {!device && <button onClick={handleDiscover}>Discover Device</button>}
-        {device && <p>{device.model}</p>}
-        {loading && (
-          <div>
-            <p>Learning...</p>
-            <button onClick={handleCancelDiscover}>Cancel</button>
+        <div className="column">
+          {!device && <button onClick={handleDiscover}>Discover Device</button>}
+          {device && <p>{device.model}</p>}
+          {loading && (
+            <div>
+              <p>Learning...</p>
+              <button onClick={handleCancelDiscover}>Cancel</button>
+            </div>
+          )}
+          <button onClick={handleLearn}>Enter Learning Mode</button>
+        </div>
+        <div class="vertical-rule"></div>
+        <div className="column">
+          <div className="cmdContainer">
+            {commands.map(({name, data}) => (
+              <CommandBtn name={name} data={data} />
+            ))}
           </div>
-        )}
-        <button onClick={handleLearn}>Enter Learning Mode</button>
+        </div>
       </div>
-      <div>
-        {commands.map(({name, data}) => (
-          <CommandBtn name={name} data={data} />
-        ))}
-      </div>
-      <dialog open={dialogIsOpen}>
-          <label>Enter Command Name</label>
-          <input ref={inputRef} />
-          <button onClick={() => handleSave(inputRef?.current?.value, irData)}>Save</button>
-      </dialog>
+      {dialogIsOpen && 
+        <dialog>
+            <label>Enter Command Name</label>
+            <input onChange={handleInputChange} ref={inputRef} />
+            <button ref={buttonRef} onClick={() => handleSave(inputRef?.current?.value, irData)}>Save</button>
+        </dialog>
+      }
     </div>
   );
 }

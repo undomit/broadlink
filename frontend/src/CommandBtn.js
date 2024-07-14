@@ -11,6 +11,6 @@ export const CommandBtn = ({name, data}) => {
     }
 
     return (
-        <button onClick={handleSendIrData}>{name}</button>
+        <button className="commandBtn" onClick={handleSendIrData}>{name}</button>
     )
 }
