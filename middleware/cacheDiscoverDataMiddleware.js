@@ -4,7 +4,7 @@ export const discoverDevice = async () => {
     const [device] = await broadlink.discover();
     
     if (device) {
-        await dev.auth();
+        await device.auth();
     }
 
     return device;
@@ -30,7 +30,6 @@ export const cacheDiscoverDataMiddleware = async (req, res, next) => {
     }
   }
 
-  console.log(cachedDiscoverData);
   req.device = cachedDiscoverData;
   next();
 };

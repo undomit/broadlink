@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getConfigInfo = async () => {
-    const info = await fs.readFile(path.join(__dirname, 'lanConfig.json'));
+    const info = await fs.readFile(path.join(__dirname, 'lanConfig.json'), 'utf8');
     
     return JSON.parse(info);
 }
